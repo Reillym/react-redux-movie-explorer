@@ -1,0 +1,21 @@
+{ 
+  "presets": [
+    "react",
+    ["env", { // babel-preset-env lets you specify your target and includes only the necessary plugins required to run on the specified target. (Similar to CSS Autoprefixer but for JavaScript)
+      "targets": {
+        "browsers": "last 2 versions"
+      },
+      "loose": true,
+      "modules": false // don't transform modules so we can use webpack 2 tree shaking
+    }]
+  ],
+  "plugins": [
+    "react-hot-loader/babel",
+    "babel-plugin-transform-class-properties"
+  ],
+  "env": {
+    "test": {
+      "plugins": ["babel-plugin-transform-es2015-modules-commonjs"]
+    }
+  }
+}
