@@ -1,12 +1,10 @@
 const path = require("path");
 const webpack = require("webpack");
 
-module.exports = {
+const config = {
   context: __dirname,
   entry: [
-    "react-hot-loader/patch",
-    "webpack-dev-server/client?http://localhost:8080",
-    "webpack/hot/only-dev-server",
+    "webpack-hot-middleware/client?path=__webpack__hmr&timeout=2000",
     "./js/ClientApp.jsx"
   ],
   devtool: "cheap-eval-source-map",
@@ -25,10 +23,13 @@ module.exports = {
   },
   stats: {
     colors: true,
-    reasons: true, // more useful code errors
+    reasons: true,
     chunks: true
   },
-  plugins: [new webpack.HotModuleReplacementPlugin(), new webpack.NamedModulesPlugin()],
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin()
+  ],
   module: {
     rules: [
       {
@@ -44,3 +45,11 @@ module.exports = {
     ]
   }
 };
+
+if (process.env.NODE_ENV === "production") {
+  config.entry = "./js/ClientApp.jsx";
+  config.devtool = false;
+  config.plugins = [];
+}
+
+module.exports = config;

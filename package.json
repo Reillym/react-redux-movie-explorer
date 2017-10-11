@@ -4,11 +4,13 @@
     "format": "prettier --list-different --single-quote --print-width=120 \"js/**/*.{js,jsx}\"",
     "lint": "eslint **/*.{js,jsx} --quiet",
     "build": "webpack",
+    "build:p": "webpack -p",
     "watch": "webpack --watch",
     "dev": "webpack-dev-server",
     "test": "jest",
     "test:update": "jest -u",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "start": "NODE_ENV=server node server.js"
   },
   "jest": {
     "snapshotSerializers": [
